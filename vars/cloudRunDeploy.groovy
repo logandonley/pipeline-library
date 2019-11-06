@@ -10,7 +10,7 @@ def call(Map config) {
         }
         else if (config.deployType == "vmware") {
           sh "sleep 300"
-          sh "gcloud beta run deploy ${config.serviceName} --image ${config.image} --platform kubernetes --namespace ${config.namespace} --kubeconfig /.config/kube/config"
+          sh "gcloud beta run deploy ${config.serviceName} --image ${config.image} --platform kubernetes --namespace ${config.namespace} --kubeconfig /.config/kube/config/config"
         }
         else {
           sh "gcloud beta run deploy ${config.serviceName} --image ${config.image} --allow-unauthenticated --region ${config.region} --platform managed"
