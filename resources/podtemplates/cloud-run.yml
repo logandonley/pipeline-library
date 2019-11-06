@@ -11,9 +11,14 @@ spec:
     volumeMounts:
       - name: gcp-logs
         mountPath: /.config/gcloud/logs
+      - name: config
+        mountPath: "/.config/kube/config"
   volumes:
   - name: gcp-logs
     emptyDir: {}
+  - name: config
+    secret:
+      secretName: kube
   #serviceAccountName: cloud-run-sa
   securityContext:
     runAsUser: 1000
