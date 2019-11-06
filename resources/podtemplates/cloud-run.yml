@@ -17,5 +17,3 @@ spec:
   #serviceAccountName: cloud-run-sa
   securityContext:
     runAsUser: 1000
-  nodeSelector:
-    type: "agent"

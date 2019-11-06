@@ -11,5 +11,3 @@ spec:
     tty: true
   securityContext:
     runAsUser: 0
-  nodeSelector:
-    type: "agent"
