@@ -4,7 +4,7 @@ metadata:
 spec:
   containers:
   - name: gcp-sdk
-    image: google/cloud-sdk:252.0.0-slim
+    image: google/cloud-sdk:270.0.0-slim
     command:
     - cat
     tty: true
