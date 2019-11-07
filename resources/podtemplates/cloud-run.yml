@@ -8,17 +8,25 @@ spec:
     command:
     - cat
     tty: true
+    env:
+      - name: GOOGLE_CLOUD_KEYFILE_JSON
+        value: "/.config/gcp/cloud-run-key.json"
     volumeMounts:
       - name: gcp-logs
         mountPath: /.config/gcloud/logs
       - name: config
-        mountPath: "/.config/kube/config"
+        mountPath: "/.config/kube"
+      - name: creds
+        mountPath: "/.config/gcp"
   volumes:
   - name: gcp-logs
     emptyDir: {}
   - name: config
     secret:
       secretName: kube
+  - name: creds
+    secret:
+      secretName: cloud-run-key
   #serviceAccountName: cloud-run-sa
   securityContext:
     runAsUser: 1000
