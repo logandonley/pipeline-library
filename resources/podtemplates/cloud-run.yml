@@ -11,10 +11,6 @@ spec:
     env:
       - name: GOOGLE_CLOUD_KEYFILE_JSON
         value: "/.config/gcp/cloud-run-key.json"
-      - name: GCP_SERVICE_ACCOUNT_FILE
-        value: "/.config/gcp/cloud-run-key.json"
-      - name: GOOGLE_APPLICATION_CREDENTIALS
-        value: "/.config/gcp/cloud-run-key.json"
     volumeMounts:
       - name: gcp-logs
         mountPath: /.config/gcloud/logs
