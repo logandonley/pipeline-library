@@ -6,9 +6,9 @@ spec:
   - name: kaniko
     image: gcr.io/kaniko-project/executor:debug-v0.10.0
     imagePullPolicy: Always
-    env:
+    volumeMounts:
       - name: jenkins-docker-cfg
-        mountPath: /kaniko/.docker/
+        mountPath: /kaniko/.docker
     command:
     - /busybox/cat
     tty: true
