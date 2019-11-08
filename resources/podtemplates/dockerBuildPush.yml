@@ -7,14 +7,19 @@ spec:
     image: gcr.io/kaniko-project/executor:debug-v0.10.0
     imagePullPolicy: Always
     env:
-      - name: dockercreds
+      - name: jenkins-docker-cfg
         mountPath: /kaniko/.docker/
     command:
     - /busybox/cat
     tty: true
   volumes:
-  - name: dockercreds
-    secret:
-      secretName: dockerhub
+  - name: jenkins-docker-cfg
+    projected:
+      sources:
+      - secret:
+          name: dockerhub
+          items:
+            - key: .dockerconfigjson
+              path: config.json
   securityContext:
     runAsUser: 0
