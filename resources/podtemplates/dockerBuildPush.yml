@@ -9,7 +9,7 @@ spec:
     command:
     - /busybox/cat
     tty: true
-        volumeMounts:
+    volumeMounts:
       - name: kaniko-secret
         mountPath: /secret
     env:
