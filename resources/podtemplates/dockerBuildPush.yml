@@ -6,20 +6,18 @@ spec:
   - name: kaniko
     image: gcr.io/kaniko-project/executor:debug-539ddefcae3fd6b411a95982a830d987f4214251
     imagePullPolicy: Always
-    volumeMounts:
-      - name: jenkins-docker-cfg
-        mountPath: /kaniko/.docker
     command:
     - /busybox/cat
     tty: true
+        volumeMounts:
+      - name: kaniko-secret
+        mountPath: /secret
+    env:
+      - name: GOOGLE_APPLICATION_CREDENTIALS
+        value: /secret/kaniko-secret.json
   volumes:
-  - name: jenkins-docker-cfg
-    projected:
-      sources:
-      - secret:
-          name: gcrcred
-          items:
-            - key: .dockerconfigjson
-              path: config.json
+    - name: kaniko-secret
+      secret:
+        secretName: kaniko-secret
   securityContext:
     runAsUser: 0
