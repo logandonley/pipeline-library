@@ -1,0 +1,13 @@
+kind: Pod
+metadata:
+  name: vuejs-app
+spec:
+  containers:
+  - name: python3
+    image: mc706/pipenv-3.6
+
+    command:
+    - cat
+    tty: true
+  securityContext:
+    runAsUser: 1000
