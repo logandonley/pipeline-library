@@ -3,9 +3,8 @@ metadata:
   name: vuejs-app
 spec:
   containers:
-  - name: python3
-    image: mc706/pipenv-3.6
-
+  - name: nodejs
+    image: node:lts-alpine
     command:
     - cat
     tty: true
