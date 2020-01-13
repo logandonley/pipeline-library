@@ -4,7 +4,7 @@ metadata:
 spec:
   containers:
   - name: python3
-    image: mc706/pipenv-3.6
+    image: johns2te/pipenv:3.7
 
     command:
     - cat
