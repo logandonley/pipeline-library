@@ -1,6 +1,6 @@
 kind: Pod
 metadata:
-  name: nodejs-app
+  name: python-app
 spec:
   containers:
   - name: python3
