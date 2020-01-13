@@ -3,13 +3,8 @@ metadata:
   name: nodejs-app
 spec:
   containers:
-  - name: nodejs
-    image: node:10.10.0-alpine
-    command:
-    - cat
-    tty: true
-  - name: testcafe
-    image: gcr.io/technologists/testcafe:0.0.2
+  - name: python3
+    image: python:3.7.6-alpine3.10
     command:
     - cat
     tty: true
