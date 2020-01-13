@@ -4,7 +4,7 @@ metadata:
 spec:
   containers:
   - name: python3
-    image: python:3.7-slim
+    image: python:3.7-alpine
     command:
     - cat
     tty: true
