@@ -4,7 +4,8 @@ metadata:
 spec:
   containers:
   - name: python3
-    image: python:3.7-alpine
+    image: mc706/pipenv-3.6
+
     command:
     - cat
     tty: true
