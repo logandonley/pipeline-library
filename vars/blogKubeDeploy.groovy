@@ -24,6 +24,7 @@ def call(imageName, gcpProject, githubCredentialId, repoOwner) {
           sh("sed -i.bak 's#REPLACE_PATH#/${repoOwner}#' .kubernetes/frontend.yaml")
         }
         container("kubectl") {
+          sh "cat .kubernetes/frontend.yaml"
           sh "kubectl apply -f .kubernetes/frontend.yaml"
           sh "echo 'deployed to http://preview.workshop.cb-sa.io/${repoName}/'"
         }
