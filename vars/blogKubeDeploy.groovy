@@ -18,6 +18,7 @@ def call(imageName, gcpProject, githubCredentialId, repoOwner) {
           // } catch(e) {
           //   //nothing to do, just means remote hasn't been initialized yet
           // }
+          sh("ls")
           sh("sed -i.bak 's#REPLACE_IMAGE_TAG#gcr.io/${gcpProject}/blog-vuejs:${repoName}-${BUILD_NUMBER}#' .kubernetes/frontend.yaml")
           sh("sed -i.bak 's#REPLACE_SERVICE_NAME#${repoName}#' .kubernetes/frontend.yaml")
         }
