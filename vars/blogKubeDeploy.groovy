@@ -20,7 +20,7 @@ def call(imageName, gcpProject, githubCredentialId, repoOwner) {
           // }
           checkout scm
           sh("sed -i.bak 's#REPLACE_IMAGE#gcr.io/${gcpProject}/blog-vuejs:${repoName}-${BUILD_NUMBER}#' .kubernetes/frontend.yaml")
-          sh("sed -i.bak 's#REPLACE_HOSTNAME#preview.workshop.cb-sa.io/#' .kubernetes/frontend.yaml")
+          sh("sed -i.bak 's#REPLACE_HOSTNAME#preview.workshop.cb-sa.io#' .kubernetes/frontend.yaml")
           sh("sed -i.bak 's#REPLACE_PATH#/${repoOwner}#' .kubernetes/frontend.yaml")
         }
         container("kubectl") {
