@@ -19,13 +19,13 @@ def call(imageName, gcpProject, githubCredentialId, repoOwner) {
           //   //nothing to do, just means remote hasn't been initialized yet
           // }
           checkout scm
-          sh("ls -a")
-          sh("sed -i.bak 's#REPLACE_IMAGE_TAG#gcr.io/${gcpProject}/blog-vuejs:${repoName}-${BUILD_NUMBER}#' .kubernetes/frontend.yaml")
-          sh("sed -i.bak 's#REPLACE_SERVICE_NAME#${repoName}#' .kubernetes/frontend.yaml")
+          sh("sed -i.bak 's#REPLACE_IMAGE#gcr.io/${gcpProject}/blog-vuejs:${repoName}-${BUILD_NUMBER}#' .kubernetes/frontend.yaml")
+          sh("sed -i.bak 's#REPLACE_HOSTNAME#preview.workshop.cb-sa.io/#' .kubernetes/frontend.yaml")
+          sh("sed -i.bak 's#REPLACE_PATH#${repoOwner}#' .kubernetes/frontend.yaml")
         }
         container("kubectl") {
           sh "kubectl apply -f .kubernetes/frontend.yaml"
-          sh "echo 'deployed to http://staging.cb-sa.io/${repoName}/'"
+          sh "echo 'deployed to http://preview.workshop.cb-sa.io/${repoName}/'"
         }
       }
     }
