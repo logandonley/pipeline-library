@@ -11,7 +11,7 @@ spec:
     runAsUser: 1000
   containers:
   - name: img-gcloud
-    image: ldonleycb/img-gcloud@sha256:a04e975f8e5a726d4b20b79afdd30c02fdd7b1e4928219d4135564ac5f0a3c85
+    image: gcr.io/core-workshop/img-gcloud@sha256:c1665a6bdd5a519ca481b059c9ed9ceadc1952e7041a44d3f7a70ae94e2ef877
     imagePullPolicy: Always
     command:
     - cat
