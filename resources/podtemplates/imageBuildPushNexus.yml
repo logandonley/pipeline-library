@@ -15,7 +15,7 @@ spec:
       privileged: true
     volumeMounts:
     - name: docker-config
-      mountPath: /.docker/
+      mountPath: ~/.docker/
     - name: cache-volume
       mountPath: /tmp/
   volumes:

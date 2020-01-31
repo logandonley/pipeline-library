@@ -9,8 +9,9 @@ def call(String imageName, String repoOwner, String registry, String imageTag = 
       gitShortCommit()
       container('img') {
         sh """
+          ls ~
+          ls
           img build --build-arg buildNumber=${BUILD_NUMBER} --build-arg shortCommit=${env.SHORT_COMMIT} --build-arg commitAuthor="${env.COMMIT_AUTHOR}" -t ${registry}/${repoOwner}/${imageName}:${imageTag} ${pwd()}
-          sleep 360
           img push ${registry}/${repoOwner}/${imageName}:${imageTag}
         """
       }
