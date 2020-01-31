@@ -8,7 +8,6 @@ def call(String imageName, String repoOwner, String registry, String imageTag = 
       script {
         env.VERSION = readFile 'version.txt'
       }
-      echo "${env.VERSION}"
       imageNameTag()
       gitShortCommit()
       container('img') {
