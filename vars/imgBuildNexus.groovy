@@ -1,6 +1,5 @@
 // vars/imgBuildNexus.groovy
-def call(String imageName, String imageTag = env.BUILD_NUMBER, String target = ".", String dockerFile="Dockerfile", Closure body) {
-  def dockerReg = "workshop"
+def call(String imageName, String repoOwner, String registry, String imageTag = env.BUILD_NUMBER, String target = ".", String dockerFile="Dockerfile", Closure body) {
   def label = "img-${UUID.randomUUID().toString()}"
   def podYaml = libraryResource 'podtemplates/imageBuildPushNexus.yml'
   podTemplate(name: 'img', label: label, yaml: podYaml) {
@@ -10,8 +9,8 @@ def call(String imageName, String imageTag = env.BUILD_NUMBER, String target = "
       gitShortCommit()
       container('img') {
         sh """
-          img build --build-arg buildNumber=${BUILD_NUMBER} --build-arg shortCommit=${env.SHORT_COMMIT} --build-arg commitAuthor="${env.COMMIT_AUTHOR}" -t ${dockerReg}/${imageName}:${imageTag} ${pwd()}
-          sleep 360
+          img build --build-arg buildNumber=${BUILD_NUMBER} --build-arg shortCommit=${env.SHORT_COMMIT} --build-arg commitAuthor="${env.COMMIT_AUTHOR}" -t ${registry}/${repoOwner}/${imageName}:${imageTag} ${pwd()}
+          img push ${registry}/${repoOwner}/${imageName}:${imageTag}
         """
       }
     }
