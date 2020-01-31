@@ -8,12 +8,13 @@ def call(String imageName, String repoOwner, String registry, String imageTag = 
       script {
         env.VERSION = readFile 'version.txt'
       }
+      echo "${env.VERSION}"
       imageNameTag()
       gitShortCommit()
       container('img') {
         sh """
           img build --build-arg buildNumber=${BUILD_NUMBER} --build-arg shortCommit=${env.SHORT_COMMIT} --build-arg commitAuthor="${env.COMMIT_AUTHOR}" -t ${registry}/${repoOwner}/${imageName}:${imageTag} ${pwd()}
-          img push ${registry}/${repoOwner}/${imageName}:${env.VERSION | env.BUILD_NUMBER}
+          img push ${registry}/${repoOwner}/${imageName}:${env.VERSION}
         """
       }
     }
