@@ -20,7 +20,13 @@ spec:
       mountPath: /tmp/
   volumes:
   - name: docker-config
-    emptyDir: {}
+    projected:
+      sources:
+      - secret:
+          name: nexuscred
+          items:
+           - key: .dockerconfigjson
+             path: config.json
   - name: cache-volume
     emptyDir: {}
   restartPolicy: Never
