@@ -5,12 +5,15 @@ def call(String imageName, String repoOwner, String registry, String imageTag = 
   podTemplate(name: 'img', label: label, yaml: podYaml) {
     node(label) {
       body()
+      script {
+        env.VERSION = readFile 'version.txt'
+      }
       imageNameTag()
       gitShortCommit()
       container('img') {
         sh """
           img build --build-arg buildNumber=${BUILD_NUMBER} --build-arg shortCommit=${env.SHORT_COMMIT} --build-arg commitAuthor="${env.COMMIT_AUTHOR}" -t ${registry}/${repoOwner}/${imageName}:${imageTag} ${pwd()}
-          img push ${registry}/${repoOwner}/${imageName}:${imageTag}
+          img push ${registry}/${repoOwner}/${imageName}:${env.VERSION | env.BUILD_NUMBER}
         """
       }
     }
